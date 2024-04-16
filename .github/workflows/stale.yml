@@ -1,0 +1,19 @@
+name: Lableing the pull request to stale
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs every day at midnight
+permissions: write_all
+env:
+    GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    GITHUB_REPO_NAME: ${{github.repository}}
+jobs:
+  STALE-PR:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Close inactive PRs
+        uses: ./
+        
