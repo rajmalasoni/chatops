@@ -1,6 +1,8 @@
 name: 'Merge and close the pr using  slash'
 on :
     issue_comment:
+        branches:
+            - '*'
 permissions: write-all
 env:
     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
