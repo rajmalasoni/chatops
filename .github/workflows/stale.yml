@@ -2,7 +2,7 @@ name: Lableing the pull request to stale
 
 on:
   push:
-permissions: write_all
+permissions: write-all
 env:
     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     GITHUB_REPO_NAME: ${{github.repository}}
