@@ -1,0 +1,16 @@
+name: "Main action file of Docker container actions"
+description: "Docker container actions"
+inputs:
+  GITHUB_TOKEN:
+    description: "Token used to access repo"
+    required: false
+  repo:
+    description: repository name
+    default: ${{ github.repository }}
+    required: false 
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    REPO_OWNER: ${{ inputs.owner }}
+    REPO_NAME: ${{ inputs.repo }}
