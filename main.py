@@ -6,6 +6,7 @@ now = datetime.now()
 try:
     g = Github(os.environ["GITHUB_TOKEN"])
     repo = g.get_repo(os.environ['REPO_NAME'])
+    print(" hello from docker")
     pulls = repo.get_pulls(state='open')
     msg = {
         # 1 stale PR
