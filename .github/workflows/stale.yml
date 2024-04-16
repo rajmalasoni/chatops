@@ -1,8 +1,7 @@
 name: Lableing the pull request to stale
 
 on:
-  schedule:
-    - cron: "45 20 * * *" # Runs every day at midnight
+  push
 permissions: write_all
 env:
     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
