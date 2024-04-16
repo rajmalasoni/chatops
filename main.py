@@ -8,7 +8,7 @@ try:
     repo = g.get_repo(os.environ['REPO_NAME'])
     pulls = repo.get_pulls(state='open')
     print("hello from docker")
-    print(f"{repo}"
+    print(f"{repo})"
     msg = {
         # 1 stale PR
         "stale_label" : 'This PR is stale because it has been open 15 days with no activity. Remove stale label or comment/update PR otherwise this will be closed in next 2 days.' ,
