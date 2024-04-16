@@ -8,9 +8,20 @@ inputs:
     description: repository name
     default: ${{ github.repository }}
     required: false 
+  pr_number:
+    description: PR number
+    required: false
+  merge_pr:
+    description: PR number
+    required: false
+  close_pr:
+    description: PR number
+    required: false  
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
     REPO_OWNER: ${{ inputs.owner }}
     REPO_NAME: ${{ inputs.repo }}
+
