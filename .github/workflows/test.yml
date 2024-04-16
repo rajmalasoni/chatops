@@ -8,7 +8,7 @@ jobs:
 
         steps:
         - name: Checkout code
-          uses: actions/checkout@3
+          uses: actions/checkout@v3
         - name: Testing bash script
           run: |
                echo "print hello"
