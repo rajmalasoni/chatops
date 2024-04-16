@@ -11,13 +11,12 @@ env:
     MERGE_PR: ${{github.event.comment.body=='/Approved'}}
     CLOSE_PR: ${{github.event.comment.body=='/Closed'}}
 
-jobs:
-    Merge_and_Close-PR:  
-    runs-on: ubuntu-latest
-    steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-        - name: Merge and close PR
-          uses: ./
-
+    jobs:
+        Merge_and_Close-PR:  
+          runs-on: ubuntu-latest
+          steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Merge and close PR
+              uses: ./
 
