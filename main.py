@@ -7,7 +7,7 @@ try:
     g = Github(os.environ["GITHUB_TOKEN"])
     repo = g.get_repo(os.environ['REPO_NAME'])
     print(" hello from docker")
-    pulls = repo.get_pulls(state='open')
+    pull = repo.get_pulls(state='open')
     print("hello from docker")
     print(f"{repo}")
     msg = {
@@ -26,6 +26,13 @@ try:
             print(f"Pull request: {pull.number} is stale!")
             pull.create_issue_comment(msg.get("stale_label"))
             pull.add_to_labels('Stale')
+        if "Stale" in [label.name for label in pull.labels]:
+            # check if the time difference is greater than the stale_close_days
+            if time_diff > timedelta(days=msg.get("stale_close_days")):
+                print(f"Pull request: {pull.number} is stale and closed!")
+                print(msg.get("staled_PR_closing"))
+                pull.edit(state="closed")
+                pull.create_issue_comment(msg.get("staled_PR_closing") )
 
 except Exception as e:
     print(f"Failed to run the job. exception: {str(e)}")  
