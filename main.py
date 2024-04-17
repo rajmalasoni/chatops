@@ -7,6 +7,8 @@ try:
     # env values
     g = Github(os.environ["GITHUB_TOKEN"])
     repo = g.get_repo(os.environ['REPO_NAME'])
+    repo_name=os.environ['REPO_NAME']
+    print("repo_name ={repo_name}")
     pulls = repo.get_pulls(state='open')
 
     pr_number = int(os.environ['PR_NUMBER']) if ( os.environ['PR_NUMBER'] ) else None
@@ -45,8 +47,8 @@ try:
         "label" : "Please remove DO NOT MERGE LABEL",
         # 9. message need to be placed here
     }
-    def get_issue_comments(repo, issue_number):
-        issue = repo.get_issue(number=issue_number)
+    def get_issue_comments(repo_name, issue_number):
+        issue = repo_name.get_issue(number=issue_number)
         comments = issue.get_comments()
         issue_label = issue.get_labels()
         return comments
@@ -164,7 +166,7 @@ try:
         message = msg.get("default")
         message = msg.get(EVENT, message)
         issue_number=pr
-        comments = get_issue_comments(repo, issue_number)
+        comments = get_issue_comments(repo_name, issue_number)
         if comments:
                 for comment in comments:
                     message += f"\n Author: {comment.user.login}\n"
