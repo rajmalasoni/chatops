@@ -54,7 +54,7 @@ try:
 
     print("repo:",repo)
     print("pulls:",pulls)
-
+    print("Hello")
     # 1.Add "Stale" label to the PR if no active from 15 days
     now = datetime.now()
 
