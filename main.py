@@ -163,8 +163,8 @@ try:
     if EVENT and GCHAT_WEBHOOK_URL:
         message = msg.get("default")
         message = msg.get(EVENT, message)
-        issue_nuber=pr
-        comments = get_issue_comments(repo_name, issue_number)
+        issue_number=pr
+        comments = get_issue_comments(repo, issue_number)
         if comments:
                 for comment in comments:
                     message += f"\n Author: {comment.user.login}\n"
