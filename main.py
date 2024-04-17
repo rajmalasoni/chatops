@@ -45,6 +45,12 @@ try:
         "label" : "Please remove DO NOT MERGE LABEL",
         # 9. message need to be placed here
     }
+    def get_issue_comments(repo, issue_number):
+        issue = repo.get_issue(number=issue_number)
+        comments = issue.get_comments()
+        issue_label = issue.get_labels()
+    return comments
+
     if pr:
         msg["default"] = f"An Event is created on PR:\nTitle: {pr.title}\nURL: {pr.html_url}"
         msg["opened"] = f"New Pull Request Created by {pr.user.login}:\nTitle: {pr.title}\nURL: {pr.html_url}"
@@ -157,16 +163,27 @@ try:
     if EVENT and GCHAT_WEBHOOK_URL:
         message = msg.get("default")
         message = msg.get(EVENT, message)
+        issue_nuber=pr
+        issue_detail = get_issue_details(repo, issue_number)
+        if issue_detail:
+            message += f"GitHub Issue Details:\n\n"
+            message += f"- Title: {issue_detail.title}\n"
+            message += f"- Author: {issue_detail.user.login}\n"
+            message += f"- State: {issue_detail.state}\n"
+            message += f"- Body: {issue_detail.body}\n"
+            message += f"- Created At: {issue_detail.created_at}\n"
+            message += f"- Updated At: {issue_detail.updated_at}\n"
+            message += f"- URL: {issue_detail.html_url}"
 
         payload = {
             "text" : message
         }
         
         response = requests.post(GCHAT_WEBHOOK_URL, json=payload)
-        res = requests.post(GCHAT_WEBHOOK_URL, json={'text': message})
-        print(res.json())
-        print(response)
-        print(EVENT)
+        #res = requests.post(GCHAT_WEBHOOK_URL, json={'text': message})
+        #print(res.json())
+        #print(response)
+        #print(EVENT)
         print("hello from docker chat")
 
 except Exception as e:
