@@ -49,7 +49,7 @@ try:
         issue = repo.get_issue(number=issue_number)
         comments = issue.get_comments()
         issue_label = issue.get_labels()
-    return comments
+        return comments
 
     if pr:
         msg["default"] = f"An Event is created on PR:\nTitle: {pr.title}\nURL: {pr.html_url}"
