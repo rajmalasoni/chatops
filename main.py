@@ -164,16 +164,12 @@ try:
         message = msg.get("default")
         message = msg.get(EVENT, message)
         issue_nuber=pr
-        issue_detail = get_issue_details(repo, issue_number)
-        if issue_detail:
-            message += f"GitHub Issue Details:\n\n"
-            message += f"- Title: {issue_detail.title}\n"
-            message += f"- Author: {issue_detail.user.login}\n"
-            message += f"- State: {issue_detail.state}\n"
-            message += f"- Body: {issue_detail.body}\n"
-            message += f"- Created At: {issue_detail.created_at}\n"
-            message += f"- Updated At: {issue_detail.updated_at}\n"
-            message += f"- URL: {issue_detail.html_url}"
+        comments = get_issue_comments(repo_name, issue_number)
+        if comments:
+                for comment in comments:
+                    message += f"\n Author: {comment.user.login}\n"
+                    message += f"  Comment: {comment.body}\n\n"
+            
 
         payload = {
             "text" : message
