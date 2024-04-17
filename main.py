@@ -160,6 +160,8 @@ try:
         }
         
         response = requests.post(GCHAT_WEBHOOK_URL, json=payload)
+        res = requests.post(GCHAT_WEBHOOK_URL, json={'text': message})
+        print(res.json())
         print(response)
         print(EVENT)
         print("hello from docker chat")
