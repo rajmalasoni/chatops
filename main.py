@@ -151,6 +151,9 @@ try:
             print(msg.get("label"))        
 
     # 9. Google chat integration with github
+    print(f"event vale ={EVENT}")
+    print(f"GCHAT_WEBHOOK_URL: ={GCHAT_WEBHOOK_URL:}")
+
     if EVENT and GCHAT_WEBHOOK_URL:
         message = msg.get("default")
         message = msg.get(EVENT, message)
