@@ -157,10 +157,11 @@ try:
         payload = {
             "text" : message
         }
-
+        
         response = requests.post(GCHAT_WEBHOOK_URL, json=payload)
         print(response)
         print(EVENT)
+        print("hello from docker chat")
 
 except Exception as e:
     print(f"Failed to run the job. exception: {str(e)}")      
