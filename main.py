@@ -47,11 +47,7 @@ try:
         "label" : "Please remove DO NOT MERGE LABEL",
         # 9. message need to be placed here
     }
-    def get_issue_comments(repo_name, issue_number):
-        issue = repo_name.get_issue(number=issue_number)
-        comments = issue.get_comments()
-        issue_label = issue.get_labels()
-        return comments
+    
 
     if pr:
         msg["default"] = f"An Event is created on PR:\nTitle: {pr.title}\nURL: {pr.html_url}"
@@ -165,8 +161,8 @@ try:
     if EVENT and GCHAT_WEBHOOK_URL:
         message = msg.get("default")
         message = msg.get(EVENT, message)
-        issue_number=pr
-        comments = get_issue_comments(repo_name, issue_number)
+        issue = repo.get_issue(number=pr)
+        comments = issue.get_comments()
         if comments:
                 for comment in comments:
                     message += f"\n Author: {comment.user.login}\n"
