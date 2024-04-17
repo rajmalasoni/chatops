@@ -17,6 +17,7 @@ try:
     VERSION_FILE = os.environ.get("VERSION_FILE")
     EVENT = os.environ['EVENT']
     GCHAT_WEBHOOK_URL = os.environ['WEBHOOK']
+    print(f"print gchat token {GCHAT_WEBHOOK_URL}")
 
     msg = {
         # 1 stale PR 
