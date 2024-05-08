@@ -3,7 +3,7 @@ name: Stale Pull Requests
 on:
   #push:
   schedule:
-    - cron: '41 20 * * *' # scheduler runs every day at 9:00am UTC
+    - cron: '0 09 * * *' # scheduler runs every day at 9:00am UTC
 permissions: write-all
 
 env:
@@ -20,4 +20,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Stale PR
-        uses: rajmalasoni/CHATOPSTEST@2.4.0.0
+        uses: rajmalasoni/CHATOPSTEST@2.5.0.0

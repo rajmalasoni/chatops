@@ -33,7 +33,7 @@ jobs:
            echo "no file"
           fi
       - name: PR Description ,Target Checker ,Version and Close the PR having DO NOT MERGE LABEL
-        uses: rajmalasoni/CHATOPSTEST@2.4.0.0
+        uses: rajmalasoni/CHATOPSTEST@2.5.0.0
         env:
           VERSION_FILE: ${{ steps.latestTag.outputs.version_file }}
         
